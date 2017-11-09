@@ -178,8 +178,84 @@ include 'db.php';
 				
 				move_uploaded_file ($file['tmp_name'],$file['name']);
 			}
-			
-			mysql_query("INSERT INTO tbl_users VALUES ('','$username','".md5($password)."','admin','$employee_name','$themes','','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1')");
+			$items = $items_modify = $items_add = $customers = $customers_modify = $customers_add = $sales = $receiving = $users = $users_modify = $users_add = $reports = $suppliers = $suppliers_modify = $suppliers_add = $credits = $salesman = $salesman_modify = $salesman_add = $expenses = $accounts_payable = $payroll = '1';
+			mysql_query("INSERT INTO tbl_users (
+				accountID,
+				username,
+				password,
+				type,
+				employee_name,
+				themes,
+				deleted,
+				items,
+				customers,
+				sales,
+				receiving,
+				users,
+				reports,
+				suppliers,
+				credits,
+				expenses,
+				items_modify,
+				customers_modify,
+				suppliers_modify,
+				users_modify,
+				salesman,
+				salesman_modify,
+				items_add,
+				customers_add,
+				suppliers_add,
+				users_add,
+				salesman_add,
+				accounts_payable,
+				payroll,
+				display,
+				items_quantity,
+				items_delete,
+				customers_delete,
+				suppliers_delete,
+				users_delete,
+				salesman_delete,
+				receiving_modify
+			) VALUES(
+				'',
+				'$username',
+				'".md5($password)."',
+				'admin',
+				'$employee_name',
+				'$themes',
+				'',
+				'$items',
+				'$customers',
+				'$sales',
+				'$receiving',
+				'$users',
+				'$reports',
+				'$suppliers',
+				'$credits',
+				'$expenses',
+				'$items_modify',
+				'$customers_modify',
+				'$suppliers_modify',
+				'$users_modify',
+				'$salesman',
+				'$salesman_modify',
+				'$items_add',
+				'$customers_add',
+				'$suppliers_add',
+				'$users_add',
+				'$salesman_add',
+				'$payroll',
+				'$accounts_payable',
+				'1',
+				'$items_quantity',
+				'$items_delete',
+				'$customers_delete',
+				'$suppliers_delete',
+				'$users_delete',
+				'$salesman_delete',
+				'$receiving_modify'
+			)");
 			mysql_query("UPDATE app_config SET app_company_name='$app_company_name', app_name = '$app_name', type_payment = '$type_payment', address = '$address', contact_number = '$contact_number',maximum_items_displayed='$maximum_items_displayed', logo='".$file['name']."' WHERE id='1'");
 		}
 	
@@ -287,7 +363,7 @@ include 'db.php';
 			echo $contact_number; ?>'>
 			</div>
 			</div>
-			
+<!-- 			
 			<div class='form-group'>
 			<label for='type_of_payments' class='col-md-2'>Type of Payments:</label>
 			<div class='col-md-5'>
@@ -295,7 +371,7 @@ include 'db.php';
 			echo $type_payment; ?>'>
 			<i style='font-size:75%;'>* Separated by Commas(,).</i>
 			</div>
-			</div>
+			</div> -->
 			
 			<div class='form-group'>
 			<label for='type_of_payments' class='col-md-2'>Maximum Items Displayed:</label>

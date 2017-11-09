@@ -267,7 +267,9 @@ input[type="text"] {
 	   <th>Item Code</th>
 	   <th>Supplier</th>
 	   <th>UOM</th>
+	   <?php if($items_quantity=='1'){ ?>	
 	   <th>Quantity</th>
+	   <?php } ?>
 	   <th>Subcost Price</th>
 	   <th>SRP</th>
 	   <th>STD Price to Trade (Terms)</th>
@@ -351,8 +353,11 @@ input[type="text"] {
 			  	echo '
 			  	</select>
 			  </td>
-			  <td><input type="text" name="unit_of_measure[]" value="'.$dbunit_of_measure.'" required="required"></td>
-			  <td><input type="number" min="0" name="quantity[]" value="'.$dbquantity.'" required="required"></td>
+			  <td><input type="text" name="unit_of_measure[]" value="'.$dbunit_of_measure.'" required="required"></td>';
+			  if($items_quantity=='1'){
+				  echo '<td><input type="number" min="0" name="quantity[]" value="'.$dbquantity.'" required="required"></td>';
+			  }
+			  echo '
 			  <td><input type="number" step="0.01" min="0" name="costprice[]" value="'.$dbcostprice.'" required="required"></td>
 			  <td><input type="number" step="0.01" min="0" name="srp[]" value="'.$dbsrp.'" required="required"></td>
 			  <td><input type="number" step="0.01" min="0" name="std_price_to_trade_terms[]" value="'.$dbstd_price_to_trade_terms.'" required="required"></td>

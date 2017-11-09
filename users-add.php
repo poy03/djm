@@ -268,6 +268,13 @@ $("#type").change(function(){
 		$suppliers_add = @$_POST["suppliers_add"];
 		$users_add = @$_POST["users_add"];
 		$salesman_add = @$_POST["salesman_add"];		
+		$items_quantity = @$_POST["items_quantity"];
+		$items_delete = @$_POST["items_delete"];
+		$customers_delete = @$_POST["customers_delete"];
+		$suppliers_delete = @$_POST["suppliers_delete"];
+		$users_delete = @$_POST["users_delete"];
+		$salesman_delete = @$_POST["salesman_delete"];
+		$receiving_modify = @$_POST["receiving_modify"];
 		if($type=='admin'){
 			$items = $items_modify = $items_add = $customers = $customers_modify = $customers_add = $sales = $receiving = $users = $users_modify = $users_add = $reports = $suppliers = $suppliers_modify = $suppliers_add = $credits = $salesman = $salesman_modify = $salesman_add = $expenses = $accounts_payable = $payroll = '1';
 		}
@@ -303,7 +310,14 @@ $("#type").change(function(){
 				salesman_add,
 				accounts_payable,
 				payroll,
-				display
+				display,
+				items_quantity,
+				items_delete,
+				customers_delete,
+				suppliers_delete,
+				users_delete,
+				salesman_delete,
+				receiving_modify
 			) VALUES(
 				'',
 				'$username',
@@ -334,7 +348,14 @@ $("#type").change(function(){
 				'$salesman_add',
 				'$payroll',
 				'$accounts_payable',
-				'1'
+				'1',
+				'$items_quantity',
+				'$items_delete',
+				'$customers_delete',
+				'$suppliers_delete',
+				'$users_delete',
+				'$salesman_delete',
+				'$receiving_modify'
 			)");
 			header("location:users");
 		}else{
@@ -399,13 +420,19 @@ $("#type").change(function(){
       &nbsp;&nbsp;<label><input type='checkbox' name='items_add' value='1' class='module'>Add Items</label>
       <br>
       &nbsp;&nbsp;<label><input type='checkbox' name='items_modify' value='1' class='module'>Modify Items</label>
+      <br>
+      &nbsp;&nbsp;<label><input type='checkbox' name='items_delete' value='1' class='module'>Delete Items</label>
+      <br>
+      &nbsp;&nbsp;<label><input type='checkbox' name='items_quantity' value='1' class='module'>Modify Quantity</label>
     </div>
 	<div class="checkbox col-md-2">
       <label><input type='checkbox' name='customers' value='1' class='module'>Customers</label>
       <br>
       &nbsp;&nbsp;<label><input type='checkbox' name='customers_add' value='1' class='module'>Add Customers</label>
       <br>      
-      &nbsp;&nbsp;<label><input type='checkbox' name='customers_modify' value='1' class='module'>Modify Customers</label>      
+      &nbsp;&nbsp;<label><input type='checkbox' name='customers_modify' value='1' class='module'>Modify Customers</label>
+      <br>      
+      &nbsp;&nbsp;<label><input type='checkbox' name='customers_delete' value='1' class='module'>Delete Customers</label>      
     </div>
 	<div class="checkbox col-md-2">
       <label><input type='checkbox' name='sales' value='1' class='module'>Sales</label>
@@ -415,21 +442,27 @@ $("#type").change(function(){
 	      <br>
 	      &nbsp;&nbsp;<label><input type='checkbox' name='salesman_add' value='1' class='module'>Add Salesman</label>
 	      <br>      
-	      &nbsp;&nbsp;<label><input type='checkbox' name='salesman_modify' value='1' class='module'>Modify Salesman</label>      
+	      &nbsp;&nbsp;<label><input type='checkbox' name='salesman_modify' value='1' class='module'>Modify Salesman</label>
+	      <br>      
+	      &nbsp;&nbsp;<label><input type='checkbox' name='salesman_delete' value='1' class='module'>Delete Salesman</label>      
 	    </div>
 	<div class="checkbox col-md-2">
       <label><input type='checkbox' name='suppliers' value='1' class='module'>Suppliers</label>
       <br>
       &nbsp;&nbsp;<label><input type='checkbox' name='suppliers_add' value='1' class='module'>Add Suppliers</label>
       <br>      
-      &nbsp;&nbsp;<label><input type='checkbox' name='suppliers_modify' value='1' class='module'>Modify Suppliers</label>      
+      &nbsp;&nbsp;<label><input type='checkbox' name='suppliers_modify' value='1' class='module'>Modify Suppliers</label>
+      <br>      
+      &nbsp;&nbsp;<label><input type='checkbox' name='suppliers_delete' value='1' class='module'>Delete Suppliers</label>      
     </div>
 	<div class="checkbox col-md-2">
       <label><input type='checkbox' name='users' value='1' class='module'>Users</label>
       <br>
       &nbsp;&nbsp;<label><input type='checkbox' name='users_add' value='1' class='module'>Add Users</label>
       <br>      
-      &nbsp;&nbsp;<label><input type='checkbox' name='users_modify' value='1' class='module'>Modify Users</label>      
+      &nbsp;&nbsp;<label><input type='checkbox' name='users_modify' value='1' class='module'>Modify Users</label>
+      <br>      
+      &nbsp;&nbsp;<label><input type='checkbox' name='users_delete' value='1' class='module'>Delete Users</label>      
     </div>
     </div>
     <hr>
@@ -445,6 +478,8 @@ $("#type").change(function(){
     </div>
 	<div class="checkbox col-md-2">
 		<label><input type='checkbox' name='receiving' value='1' class='module'>Receiving</label>
+		<br>      
+		&nbsp;&nbsp;<label><input type='checkbox' name='receiving_modify' value='1' class='module'>Modify Receiving</label>      
 	</div> 
 	<div class="checkbox col-md-2">
 		<label><input type='checkbox' name='accounts_payable' value='1' class='module'>Accounts Payable</label>

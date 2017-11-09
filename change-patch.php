@@ -117,6 +117,14 @@ if(APP_VERSION=="1.2"){
 	mysql_query("UPDATE tbl_receiving SET type='purchase'");
 	# code...
 }elseif(APP_VERSION=="2.3"){
+	// mysql_query("ALTER TABLE `tbl_users` ADD `items_quantity` INT NOT NULL AFTER `items_modify`");
+	// mysql_query("ALTER TABLE `tbl_users` ADD `items_delete` INT NOT NULL AFTER `items_modify`");
+	// mysql_query("ALTER TABLE `tbl_users` ADD `customers_delete` INT NOT NULL AFTER `customers_modify`");
+	// mysql_query("ALTER TABLE `tbl_users` ADD `suppliers_delete` INT NOT NULL AFTER `suppliers_modify`");
+	// mysql_query("ALTER TABLE `tbl_users` ADD `users_delete` INT NOT NULL AFTER `users_modify`");
+	// mysql_query("ALTER TABLE `tbl_users` ADD `salesman_delete` INT NOT NULL AFTER `salesman_modify`");
+	// mysql_query("ALTER TABLE `tbl_users` ADD `receiving_modify` INT NOT NULL AFTER `receiving`");
+	mysql_query("UPDATE tbl_users SET items_quantity='1', items_delete = '1', customers_delete = '1', suppliers_delete = '1', users_delete = '1', salesman_delete = '1', receiving_modify = '1' WHERE type='admin'");
 
 }
 

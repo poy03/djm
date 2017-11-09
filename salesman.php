@@ -281,10 +281,14 @@ include 'db.php';
 	
 	<?php if($salesman_modify=='1'){ ?>
 	<button class='btn btn-primary btn-block' name='edit' type='submit'><span class='glyphicon glyphicon-edit'></span> Edit Salesman</button>
+	<?php } ?>
+
+	<?php if($salesman_delete=='1'){ ?>
 	<button class='btn btn-danger btn-block' name='delete' type='submit' id='delete'><span class='glyphicon glyphicon-trash'></span> Delete Salesman</button>
+	<?php } ?>
+
 	<input type='text' placeholder='Search for Supplier' id='salesman' class='search form-control' style='margin-top:.5em;'>
 	<br>
-	<?php } ?>
 	</div>
 	<div class='table-responsive col-md-10'>
 	<table class='table table-hover tablesorter tablesorter-default' id='myTable'>

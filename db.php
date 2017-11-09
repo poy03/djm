@@ -130,6 +130,14 @@ if(mysql_num_rows($accquery)!=0){
 		$reports=$accrow["reports"];
 		$credits = $accrow["credits"];
 
+		$items_quantity=$accrow["items_quantity"];
+		$items_delete=$accrow["items_delete"];
+		$customers_delete=$accrow["customers_delete"];
+		$suppliers_delete=$accrow["suppliers_delete"];
+		$users_delete=$accrow["users_delete"];
+		$salesman_delete=$accrow["salesman_delete"];
+		$receiving_modify=$accrow["receiving_modify"];
+
 		if($accounting_period==0){
 			//if accounting period is disabled, these modules with are not available.
 			// $items_add =
@@ -153,12 +161,12 @@ if(mysql_num_rows($accquery)!=0){
 		($credits==1?$credits_module = 9:$credits_module = 0);
 		($expenses==1?$expenses_module = 10:$expenses_module = 0);
 		($payroll==1?$payroll_module = 11:$payroll_module = 0);
-		($accounts_payable==1?$accounts_payable_module = 12:$accounts_payable_module = 0);
-		$list_modules = array($items_module,$customers_module,$sales_module,$salesman_module,$receiving_module,$users_module,$reports_module,$suppliers_module,$credits_module,$expenses_module,$payroll_module,$accounts_payable_module,13,14);
+		($accounts_payable==1?$accounts_payable_module = 11:$accounts_payable_module = 0);
+		$list_modules = array($items_module,$customers_module,$sales_module,$salesman_module,$receiving_module,$users_module,$reports_module,$suppliers_module,$credits_module,$expenses_module,$payroll_module,$accounts_payable_module,12,13);
 
 		$list_modules = array_unique($list_modules);
 		sort($list_modules);
-		if($total_modules<12){
+		if($total_modules<11){
 			array_shift($list_modules);
 		}
 		//if total modules-2 is less than number of modules to display in navbar then set the style to navbar second row to display:none else add hide-navbar class in the first navbar, hide-navbar is used in style.css

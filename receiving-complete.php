@@ -594,13 +594,15 @@ border-color: transparent;
 					$status .= "<h5>The Freight of Transaction this Transaction is paid with ".number_format($order_data["freight_payment"],2)." on ".date("m/d/Y",$order_data["freight_payment_date"])."</h5>";
 				}
 
-        if($order_data["payment"]==0){
-          if($order_data["freight_needs_payment"]==1&&$order_data["freight_payment"]==0){
-            echo "<button type='button' class='btn btn-info btn-lg' data-toggle='modal' data-target='#edit_purchases_modal'><span class='glyphicon glyphicon-shopping-cart'></span> Return Items</button>"; 
-          }elseif ($order_data["freight_needs_payment"]==1&&$order_data["freight_payment"]!=0) {
-            # code...
-          }else{
-            echo "<button type='button' class='btn btn-info btn-lg' data-toggle='modal' data-target='#edit_purchases_modal'><span class='glyphicon glyphicon-shopping-cart'></span> Return Items</button>"; 
+        if($receiving_modify){
+          if($order_data["payment"]==0){
+            if($order_data["freight_needs_payment"]==1&&$order_data["freight_payment"]==0){
+              echo "<button type='button' class='btn btn-info btn-lg' data-toggle='modal' data-target='#edit_purchases_modal'><span class='glyphicon glyphicon-shopping-cart'></span> Return Items</button>"; 
+            }elseif ($order_data["freight_needs_payment"]==1&&$order_data["freight_payment"]!=0) {
+              # code...
+            }else{
+              echo "<button type='button' class='btn btn-info btn-lg' data-toggle='modal' data-target='#edit_purchases_modal'><span class='glyphicon glyphicon-shopping-cart'></span> Return Items</button>"; 
+            }
           }
         }
  

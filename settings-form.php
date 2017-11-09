@@ -198,11 +198,12 @@ include 'db.php';
 			$address = $_POST["address"];
 			$contact_number = $_POST["contact_number"];
 			$type_payment = $_POST["type_payment"];
+			$password = trim($_POST["password"]);
 			$themes = $_POST["themes"];
 			$maximum_items_displayed = $_POST["maximum_items_displayed"];
 			$file = $_FILES["logo"];
 			if($file["error"]==0&&($file["type"]=='image/png' || $file["type"]=='image/jpeg' || $file["type"]=='image/pjpeg' || $file["type"]=='image/gif')){
-				unlink($logo);
+				// unlink($logo);
 				move_uploaded_file ($file['tmp_name'],$file['name']);
 				mysql_query("UPDATE app_config SET logo='".$file['name']."'");
 			}
@@ -213,16 +214,42 @@ include 'db.php';
 			contact_number='$contact_number',
 			maximum_items_displayed='$maximum_items_displayed',
 			type_payment='$type_payment' WHERE id='1'");
-			mysql_query("UPDATE tbl_users SET themes = '$themes', display='$display_name' WHERE accountID='$accountID'");
-			echo "
-			<div class = 'alert alert-success alert-dismissable'>
-			   <button type = 'button' class = 'close' data-dismiss = 'alert' aria-hidden = 'true'>
-				  &times;
-			   </button>
-				
-			   <strong>Successfuly Saved. Redirecting in 3 seconds</strong>
-			</div>
-			";
+			if($password!=""){
+				if(strlen($password)>=5){
+					mysql_query("UPDATE tbl_users SET themes = '$themes', display='$display_name', password='".md5($password)."' WHERE accountID='$accountID'");
+					echo "
+					<div class = 'alert alert-success alert-dismissable'>
+					   <button type = 'button' class = 'close' data-dismiss = 'alert' aria-hidden = 'true'>
+						  &times;
+					   </button>
+						
+					   <strong>Successfuly Saved. Redirecting in 3 seconds</strong>
+					</div>
+					";
+				}else{
+					echo "
+					<div class = 'alert alert-danger alert-dismissable'>
+					   <button type = 'button' class = 'close' data-dismiss = 'alert' aria-hidden = 'true'>
+						  &times;
+					   </button>
+						
+					   <strong>Password has not been changed, the password must be at least 5 characters. Redirecting in 3 seconds</strong>
+					</div>
+					";
+				}
+			}else{
+				mysql_query("UPDATE tbl_users SET themes = '$themes', display='$display_name' WHERE accountID='$accountID'");
+				echo "
+				<div class = 'alert alert-success alert-dismissable'>
+				   <button type = 'button' class = 'close' data-dismiss = 'alert' aria-hidden = 'true'>
+					  &times;
+				   </button>
+					
+				   <strong>Successfuly Saved. Redirecting in 3 seconds</strong>
+				</div>
+				";
+			}
+			
 			header( "Refresh:3; url=settings", true, 303);
 		}
 	}else{

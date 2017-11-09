@@ -195,12 +195,19 @@ input[type="text"] {
 		$suppliers_modify = $_POST["suppliers_modify"];
 		$salesman = $_POST["salesman"];		
 		$salesman_add = $_POST["salesman_add"];		
-		$salesman_modify = $_POST["salesman_modify"];		
+		$salesman_modify = $_POST["salesman_modify"];
+		$items_quantity = $_POST["items_quantity"];
+		$items_delete = $_POST["items_delete"];
+		$customers_delete = $_POST["customers_delete"];
+		$suppliers_delete = $_POST["suppliers_delete"];
+		$users_delete = $_POST["users_delete"];
+		$salesman_delete = $_POST["salesman_delete"];
+		$receiving_modify = $_POST["receiving_modify"];
 		$i = 0;
 		
 		foreach($x as $itemID){
 			if($type[$i]=='admin'){
-				$items[$i] = $items_add[$i] = $items_modify[$i] = $customers[$i] = $customers_add[$i] = $customers_modify[$i] = $sales[$i] = $receiving[$i] = $users[$i] = $users_add[$i] = $users_modify[$i] = $reports[$i] = $suppliers[$i] = $suppliers_add[$i] = $suppliers_modify[$i] = $credits[$i] = $salesman[$i] = $salesman_modify[$i] = $salesman_add[$i] = $expenses[$i] = $accounts_payable[$i] = $payroll[$i] = '1';
+				$items[$i] = $items_add[$i] = $items_modify[$i] = $customers[$i] = $customers_add[$i] = $customers_modify[$i] = $sales[$i] = $receiving[$i] = $users[$i] = $users_add[$i] = $users_modify[$i] = $reports[$i] = $suppliers[$i] = $suppliers_add[$i] = $suppliers_modify[$i] = $credits[$i] = $salesman[$i] = $salesman_modify[$i] = $salesman_add[$i] = $expenses[$i] = $accounts_payable[$i] = $payroll[$i] = $items_delete[$i] = $customers_delete[$i] = $suppliers_delete[$i] = $users_delete[$i] = $salesman_delete[$i] = $receiving_modify[$i] ='1';
 			}
 
 			$searchquery = mysql_query("SELECT * FROM tbl_users WHERE username='$dbusername[$i]' AND deleted='0' AND accountID!='$itemID'");
@@ -232,7 +239,14 @@ input[type="text"] {
 				accounts_payable='$accounts_payable[$i]',				
 				payroll='$payroll[$i]',				
 				expenses='$expenses[$i]',				
-				reports='$reports[$i]'
+				reports='$reports[$i]',
+				items_quantity='$items_quantity[$i]',
+				items_delete='$items_delete[$i]',
+				customers_delete='$customers_delete[$i]',
+				suppliers_delete='$suppliers_delete[$i]',
+				users_delete='$users_delete[$i]',
+				salesman_delete='$salesman_delete[$i]',
+				receiving_modify='$receiving_modify[$i]'
 				WHERE accountID = '$itemID'");
 				}else{//if password textbox has a value then do not update the password of the user.
 				mysql_query("UPDATE tbl_users SET
@@ -260,7 +274,14 @@ input[type="text"] {
 				accounts_payable='$accounts_payable[$i]',				
 				payroll='$payroll[$i]',				
 				expenses='$expenses[$i]',				
-				reports='$reports[$i]'
+				reports='$reports[$i]',
+				items_quantity='$items_quantity[$i]',
+				items_delete='$items_delete[$i]',
+				customers_delete='$customers_delete[$i]',
+				suppliers_delete='$suppliers_delete[$i]',
+				users_delete='$users_delete[$i]',
+				salesman_delete='$salesman_delete[$i]',
+				receiving_modify='$receiving_modify[$i]'
 				WHERE accountID = '$itemID'");
 				}
 			}
@@ -294,20 +315,27 @@ input[type="text"] {
 	   <th style="border-left-style: solid;border-left-width: 1px;border-left-color: black;">Items</th>
 	   <th>Add Items</th>
 	   <th>Modify Items</th>
+	   <th>Delete Items</th>
+	   <th>Modify Quantity</th>
 	   <th style="border-left-style: solid;border-left-width: 1px;border-left-color: black;">Customers</th>
 	   <th>Add Customers</th>
 	   <th>Modify Customers</th>
+	   <th>Delete Customers</th>
 	   <th style="border-left-style: solid;border-left-width: 1px;border-left-color: black;">Users</th>
 	   <th>Add Users</th>
 	   <th>Modify Users</th>
+	   <th>Delete Users</th>
 	   <th style="border-left-style: solid;border-left-width: 1px;border-left-color: black;">Suppliers</th>
 	   <th>Add Suppliers</th>
 	   <th>Modify Suppliers</th>
+	   <th>Delete Suppliers</th>
 	   <th style="border-left-style: solid;border-left-width: 1px;border-left-color: black;">Salesman</th>
 	   <th>Add Salesman</th>
 	   <th>Modify Salesman</th>
+	   <th>Delete Salesman</th>
 	   <th style="border-left-style: solid;border-left-width: 1px;border-left-color: black;">Sales</th>	   
 	   <th style="border-left-style: solid;border-left-width: 1px;border-left-color: black;">Receiving</th>
+	   <th style="border-left-style: solid;border-left-width: 1px;border-left-color: black;">Modify Receiving</th>
 	   <th style="border-left-style: solid;border-left-width: 1px;border-left-color: black;">Reports</th>
 	   <th style="border-left-style: solid;border-left-width: 1px;border-left-color: black;">Accounts Receivable</th>
 	   <th style="border-left-style: solid;border-left-width: 1px;border-left-color: black;">Expenses</th>
@@ -346,6 +374,7 @@ input[type="text"] {
 	 $itemquery = mysql_query($query);
 	 if(mysql_num_rows($itemquery)!=0){
 		 while($itemrow=mysql_fetch_assoc($itemquery)){
+			 $dbaccountID = $itemrow["accountID"];
 			 $dbusername = $itemrow["username"];
 			 $dbpassword = $itemrow["password"];
 			 $dbtype = $itemrow["type"];
@@ -377,6 +406,14 @@ input[type="text"] {
 			 $dbusers_modify = $itemrow["users_modify"];
 			 $dbsalesman_modify = $itemrow["salesman_modify"];
 
+			 $dbitems_quantity = $itemrow["items_quantity"];
+			 $dbitems_delete = $itemrow["items_delete"];
+			 $dbcustomers_delete = $itemrow["customers_delete"];
+			 $dbsuppliers_delete = $itemrow["suppliers_delete"];
+			 $dbusers_delete = $itemrow["users_delete"];
+			 $dbsalesman_delete = $itemrow["salesman_delete"];
+			 $dbreceiving_modify = $itemrow["receiving_modify"];
+
 			 if($dbtype=='user'){
 				 $state = "selected='selected'";
 				 
@@ -395,8 +432,8 @@ input[type="text"] {
 			  <td><input type="text" name="employee_name[]" value="'.$dbemployee_name.'" required="required"></td>
 			  <td><input type="text" name="username[]" value="'.$dbusername.'" required="required" autocomplete="off"></td>
 			  ';
+			  //<td><input type='text' name='password[]' value='' autocomplete='off'></td>
 			  echo "
-			  <td><input type='text' name='password[]' value='' autocomplete='off'></td>
 			  <td style='border-left-style: solid;border-left-width: 1px;border-left-color: black;'>
 			  <select class='tbl_row' name='items[]'>
 				<option value='0'>Deny</option>
@@ -430,6 +467,28 @@ input[type="text"] {
 				echo ">Allow</option>
 			  </select>
 			  </td>
+
+		    <td>
+		    <select class='tbl_row' name='items_delete[]'>
+		  	<option value='0'>Deny</option>
+		  	<option value='1' ";
+		  	if($dbitems_delete=='1'){
+		  		echo "selected='selected'";
+		  	}
+		  	echo ">Allow</option>
+		    </select>
+		    </td>
+
+		    <td>
+		    <select class='tbl_row' name='items_quantity[]'>
+		  	<option value='0'>Deny</option>
+		  	<option value='1' ";
+		  	if($dbitems_quantity=='1'){
+		  		echo "selected='selected'";
+		  	}
+		  	echo ">Allow</option>
+		    </select>
+		    </td>
 				  
 			  <td style='border-left-style: solid;border-left-width: 1px;border-left-color: black;'>
 			  <select class='tbl_row' name='customers[]'>
@@ -464,8 +523,19 @@ input[type="text"] {
 			  </select>
 			  </td>
 
+		    <td>
+		    <select class='tbl_row' name='customers_delete[]'>
+		  	<option value='0'>Deny</option>
+		  	<option value='1' ";
+		  	if($dbcustomers_delete=='1'){
+		  		echo "selected='selected'";
+		  	}
+		  	echo ">Allow</option>
+		    </select>
+		    </td>
+
 			  <td style='border-left-style: solid;border-left-width: 1px;border-left-color: black;'>
-			  <select class='tbl_row' name='users[]'>
+			  <select class='tbl_row' name='users[]' ".($dbaccountID==$accountID?"disabled":"").">
 				<option value='0'>Deny</option>
 				<option value='1' ";
 				if($dbusers=='1'){
@@ -476,7 +546,7 @@ input[type="text"] {
 			  </td>
 
 			  <td>
-			  <select class='tbl_row' name='users_add[]'>
+			  <select class='tbl_row' name='users_add[]' ".($dbaccountID==$accountID?"disabled":"").">
 				<option value='0'>Deny</option>
 				<option value='1' ";
 				if($dbusers_add=='1'){
@@ -487,7 +557,7 @@ input[type="text"] {
 			  </td>
 
 			  <td>
-			  <select class='tbl_row' name='users_modify[]'>
+			  <select class='tbl_row' name='users_modify[]' ".($dbaccountID==$accountID?"disabled":"").">
 				<option value='0'>Deny</option>
 				<option value='1' ";
 				if($dbusers_modify=='1'){
@@ -497,6 +567,17 @@ input[type="text"] {
 			  </select>
 			  </td>
 
+
+		    <td>
+		    <select class='tbl_row' name='users_delete[]' ".($dbaccountID==$accountID?"disabled":"").">
+		  	<option value='0'>Deny</option>
+		  	<option value='1' ";
+		  	if($dbusers_delete=='1'){
+		  		echo "selected='selected'";
+		  	}
+		  	echo ">Allow</option>
+		    </select>
+		    </td>
 
 
 
@@ -535,6 +616,17 @@ input[type="text"] {
 			  </select>
 			  </td>
 
+		    <td>
+		    <select class='tbl_row' name='suppliers_delete[]'>
+		  	<option value='0'>Deny</option>
+		  	<option value='1' ";
+		  	if($dbsuppliers_delete=='1'){
+		  		echo "selected='selected'";
+		  	}
+		  	echo ">Allow</option>
+		    </select>
+		    </td>
+
 
 
 			  <td style='border-left-style: solid;border-left-width: 1px;border-left-color: black;'>
@@ -571,6 +663,17 @@ input[type="text"] {
 			  </select>
 			  </td>
 
+		    <td>
+		    <select class='tbl_row' name='salesman_delete[]'>
+		  	<option value='0'>Deny</option>
+		  	<option value='1' ";
+		  	if($dbsalesman_delete=='1'){
+		  		echo "selected='selected'";
+		  	}
+		  	echo ">Allow</option>
+		    </select>
+		    </td>
+
 
 
 
@@ -595,6 +698,17 @@ input[type="text"] {
 				echo ">Allow</option>
 			  </select>
 			  </td>
+
+		    <td style='border-left-style: solid;border-left-width: 1px;border-left-color: black;'>
+		    <select class='tbl_row' name='receiving_modify[]'>
+		  	<option value='0'>Deny</option>
+		  	<option value='1' ";
+		  	if($dbreceiving_modify=='1'){
+		  		echo "selected='selected'";
+		  	}
+		  	echo ">Allow</option>
+		    </select>
+		    </td>
 			  
 
 			  <td style='border-left-style: solid;border-left-width: 1px;border-left-color: black;'>

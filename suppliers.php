@@ -254,10 +254,13 @@ include 'db.php';
 	}?>
 	<?php if($suppliers_modify=='1'){ ?>
 	<button class='btn btn-primary btn-block' name='edit' type='submit'><span class='glyphicon glyphicon-edit'></span> Edit Suppliers</button>
+	<?php } ?>
+
+	<?php if($suppliers_delete=='1'){ ?>
 	<button class='btn btn-danger btn-block' name='delete' type='submit' id='delete'><span class='glyphicon glyphicon-trash'></span> Delete Suppliers</button>
+	<?php } ?>
 	<input type='text' placeholder='Search for Supplier' id='suppliers' class='search form-control' style='margin-top:.5em;'>
 	<br>
-	<?php } ?>
 	</div>
 	<div class='table-responsive col-md-10'>
 	<table class='table table-hover tablesorter tablesorter-default' id='myTable'>

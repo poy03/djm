@@ -244,6 +244,9 @@ include 'db.php';
 	
 	<?php if($customers_modify=='1'){ ?>
 	<button class='btn btn-primary btn-block' name='edit' type='submit'><span class='glyphicon glyphicon-edit'></span> Edit Customers</button>
+	<?php } ?>
+
+	<?php if($customers_delete=='1'){ ?>
 	<button class='btn btn-danger btn-block' name='delete' type='submit' id='delete'><span class='glyphicon glyphicon-trash'></span> Delete Customers</button>
 	<?php } ?>
 	<input type='text' placeholder='Search for Customer' id='search_customer' autocomplete='off' class='search form-control' style='margin-top:.5em;'>

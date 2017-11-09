@@ -263,12 +263,13 @@ $("#add").click(function(){
 	<?php if($users_add=='1'){
 		echo "<span class='btn btn-primary btn-block' name='add' id='add'><span class='glyphicon glyphicon-user'></span> Add Users</span>";
 	}?>
-	<?php
-	if($users_modify=='1'){
-		echo "<button class='btn btn-primary btn-block' name='edit'><span class='glyphicon glyphicon-edit'></span> Edit Users</button>
-	<button class='btn btn-danger btn-block' name='delete'><span class='glyphicon glyphicon-trash'></span> Delete Users</button>";
-	}
-	?>
+	<?php if($users_modify=='1'){
+		echo "<button class='btn btn-primary btn-block' name='edit'><span class='glyphicon glyphicon-edit'></span> Edit Users</button>";
+	} ?>
+
+	<?php if($users_delete=='1'){
+	  echo "<button class='btn btn-danger btn-block' name='delete'><span class='glyphicon glyphicon-trash'></span> Delete Users</button>";
+	} ?>
 	</div>
 	<div class='col-md-10 table-responsive' >
 	<table class='table table-hover' id='myTable'>

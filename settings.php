@@ -169,6 +169,7 @@ include 'importer.php';
 		echo "
 		<form action='settings-form' class='form-horizontal' method='post' enctype='multipart/form-data'>";
 			?>
+			<?php if($type=="admin"){ ?>
 			<div class='col-md-2'>
 			<button class='btn btn-primary btn-block' type='submit' name='save'>Save</button>
 			</div>
@@ -207,14 +208,14 @@ include 'importer.php';
 			</div>
 			</div>
 			
-			<div class='form-group'>
+<!-- 			<div class='form-group'>
 			<label for='type_of_payments' class='col-md-2'>Type of Payments:</label>
 			<div class='col-md-10'>
 			<input type='text' class='form-control' name='type_payment' value='<?php			
 			echo $type_payment; ?>'>
 			<i style='font-size:75%;'>* Separated by Commas(,).</i>
 			</div>
-			</div>
+			</div> -->
 			
 			<div class='form-group'>
 			<label for='type_of_payments' class='col-md-2'>Maximum Items Displayed:</label>
@@ -234,9 +235,16 @@ include 'importer.php';
 			
 			</div>
 			</div>
-			
+			<?php } ?>
 			
 			<h3 style='text-align: center;'>Personal Preference</h3>
+
+			<div class='form-group'>
+			<label for='themes' class='col-md-2'>Change Password:</label>
+			<div class='col-md-10'>
+				<input type="text" name="password" class="form-control">
+			</div>
+			</div>
 
 			<div class='form-group'>
 			<label for='themes' class='col-md-2'>Display Names of Modules?</label>

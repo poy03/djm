@@ -296,8 +296,12 @@ include 'db.php';
 
 	<?php if($items_modify=='1'){ ?>	
 	<button class='btn btn-primary btn-block' name='edit' type='submit'><span class='glyphicon glyphicon-edit'></span> Edit Items</button>
+	<?php } ?>
+
+	<?php if($items_delete=='1'){ ?>	
 	<button class='btn btn-danger btn-block' name='delete' type='submit' id='delete'><span class='glyphicon glyphicon-trash'></span> Delete Items</button>
 	<?php } ?>
+
 	<br>
 	<label>Category:</label>
 	<select class='form-control' id='cat'>
