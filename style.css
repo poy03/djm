@@ -1,0 +1,103 @@
+#heading{
+
+}
+#menu{
+border-color:grey;
+border-style:solid;
+border-width:0.1em;
+padding:1em;
+margin-top:0.5em;
+border-radius:1em;
+}
+.content{
+margin-top:0.5em;
+}
+.menu{
+border-color:grey;
+border-style:solid;
+border-width:0.1em;
+padding:1em;
+margin-top:0.5em;
+border-radius:1em;
+}
+  .popover{
+    width:100%;   
+}
+
+
+  .ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+  }
+  /* IE 6 doesn't support max-height
+   * we use height instead, but this forces the menu to always be this tall
+   */
+  * html .ui-autocomplete {
+    height: 200px;
+  }
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+.announcement{
+  margin:0px;
+  padding:5px;
+  text-align: center;
+}
+.announcement .close{
+  position: relative;
+  left:-5px;
+}
+.app-name{
+  color: transparent !important;
+}
+.hide-navbar{
+  display: none !important;
+}
+
+@media (max-width: 991px) {
+    .div-of-search{
+      width: 100% !important;
+      position: relative;
+      left: 10px !important;
+    }
+    .app-name{
+      display: none !important;
+    }
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .navbar-text {
+        float: none;
+        margin: 15px 0;
+    }
+    /* since 3.1.0 */
+    .navbar-collapse.collapse.in { 
+        display: block!important;
+    }
+    .collapsing {
+        overflow: hidden!important;
+    }
+}
