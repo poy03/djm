@@ -1,12 +1,5 @@
 <?php
-date_default_timezone_set('Asia/Manila');
-ini_set('max_execution_time', 30000);
-ini_set('max_input_vars', 3000);
-define("DB_HOST", "");
-define("DB_USER", "root");
-define("DB_PASSWORD", "");
-define("DBNAME", "posdb");
-define("APP_VERSION", "2.3");
+include 'connection.php';
 if(isset($_COOKIE["LOGGED"])){
 	$accountID = explode("c", $_COOKIE["LOGGED"]);
 	$accountID = array_pop($accountID);
@@ -14,8 +7,6 @@ if(isset($_COOKIE["LOGGED"])){
 	$accountID = $_SESSION['accountID'];
 }
 $type='';
-$connect = mysql_connect(DB_HOST,DB_USER,DB_PASSWORD);
-mysql_select_db(DBNAME);
 
 $updates = 0;
 error_reporting(0);
